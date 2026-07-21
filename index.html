@@ -54,15 +54,14 @@
 </head>
 <body>
 
-    <!-- Login / Registrierungs-Bereich -->
     <div id="login-container" class="container">
         <h2>Wahrheit oder Pflicht 🔥</h2>
         <input type="text" id="benutzername" placeholder="Benutzername"><br>
         <input type="password" id="passwort" placeholder="Passwort"><br>
-        <button onclick="startApp()">Registrieren / Einloggen</button>
+        <button onclick="starteSpiel()">Registrieren</button>
+        <button onclick="starteSpiel()">Einloggen</button>
     </div>
 
-    <!-- Eigentlicher Spiel-Bereich (anfangs unsichtbar) -->
     <div id="game-container" class="container hidden">
         <h1 id="welcome-user">Wahrheit oder Pflicht</h1>
         <p>Wählt eine Kategorie:</p>
@@ -72,7 +71,6 @@
         <div id="ausgabe">Drückt einen Button, um zu starten!</div>
     </div>
 
-    <!-- Spiellogik & Übergang -->
     <script>
         const wahrheiten = [
             "Was war das Peinlichste, das dir je passiert ist?",
@@ -86,7 +84,7 @@
             "Lass dir von deiner Mitspielerin eine neue Frisur verpassen."
         ];
 
-        function startApp() {
+        function starteSpiel() {
             const name = document.getElementById("benutzername").value;
             if (name.trim() === "") {
                 alert("Bitte gib einen Benutzernamen ein!");
@@ -109,7 +107,6 @@
         }
     </script>
 
-    <!-- Firebase SDK und Initialisierung -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js";
