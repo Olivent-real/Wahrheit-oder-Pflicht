@@ -20,6 +20,15 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 5px;
+        }
         button {
             background-color: #ff4757;
             color: white;
@@ -33,6 +42,9 @@
         button:hover {
             background-color: #ff6b81;
         }
+        .hidden {
+            display: none;
+        }
         #ausgabe {
             margin-top: 20px;
             font-size: 18px;
@@ -42,8 +54,17 @@
 </head>
 <body>
 
-    <div class="container">
-        <h1>Wahrheit oder Pflicht</h1>
+    <!-- Login / Registrierungs-Bereich -->
+    <div id="login-container" class="container">
+        <h2>Wahrheit oder Pflicht 🔥</h2>
+        <input type="text" id="benutzername" placeholder="Benutzername"><br>
+        <input type="password" id="passwort" placeholder="Passwort"><br>
+        <button onclick="startApp()">Registrieren / Einloggen</button>
+    </div>
+
+    <!-- Eigentlicher Spiel-Bereich (anfangs unsichtbar) -->
+    <div id="game-container" class="container hidden">
+        <h1 id="welcome-user">Wahrheit oder Pflicht</h1>
         <p>Wählt eine Kategorie:</p>
         <button onclick="zeigeWahrheit()">Wahrheit</button>
         <button onclick="zeigePflicht()">Pflicht</button>
@@ -51,7 +72,7 @@
         <div id="ausgabe">Drückt einen Button, um zu starten!</div>
     </div>
 
-    <!-- Einfache Spiellogik -->
+    <!-- Spiellogik & Übergang -->
     <script>
         const wahrheiten = [
             "Was war das Peinlichste, das dir je passiert ist?",
@@ -64,6 +85,18 @@
             "Mache 10 Kniebeugen, während du lachst.",
             "Lass dir von deiner Mitspielerin eine neue Frisur verpassen."
         ];
+
+        function startApp() {
+            const name = document.getElementById("benutzername").value;
+            if (name.trim() === "") {
+                alert("Bitte gib einen Benutzernamen ein!");
+                return;
+            }
+            // Login-Bereich verstecken, Spiel anzeigen
+            document.getElementById("login-container").classList.add("hidden");
+            document.getElementById("game-container").classList.remove("hidden");
+            document.getElementById("welcome-user").innerText = "Hey " + name + "! 🔥";
+        }
 
         function zeigeWahrheit() {
             const zufall = Math.floor(Math.random() * wahrheiten.length);
